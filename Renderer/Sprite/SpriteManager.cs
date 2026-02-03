@@ -31,6 +31,20 @@ public static class SpriteManager
         return s;
     }
 
+    public static AnimatedSprite.AnimatedSprite AddAnimatedSprite(Texture2D tex, string name)
+    {
+        var s = new AnimatedSprite.AnimatedSprite();
+        s.Reset();
+        s.Name = name;
+        s.Texture = tex;
+        s.Active = true;
+        s.Visible = true;
+
+        Pool.Add(s);
+        _needsSort = true;
+        return s;
+    }
+    
     public static void Destroy(Sprite? sprite)
     {
         if (sprite is not { Active: true })
