@@ -1,4 +1,5 @@
 using Raylib_cs;
+using Sunako.Audio;
 
 namespace Sunako.Core;
 
@@ -24,6 +25,7 @@ public class Window()
 
         Raylib.SetConfigFlags(flags);
         Raylib.InitWindow(width, height, title);
+        AudioManager.Init();
         Raylib.SetExitKey(KeyboardKey.Null);
         _isRunning = true;
     }
@@ -92,6 +94,7 @@ public class Window()
         }
 
         CleanUp();
+        AudioManager.CleanUp();
         Raylib.CloseWindow();
     }
 }
