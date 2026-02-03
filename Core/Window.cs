@@ -1,6 +1,6 @@
 using Raylib_cs;
 using Sunako.Audio;
-using Sunako.Input;
+using Sunako.Renderer.Sprite;
 
 namespace Sunako.Core;
 
@@ -84,17 +84,20 @@ public class Window()
 
     public void Run()
     {
+        SpriteManager.InitPool();
         LoadContent();
         while (_isRunning && !Raylib.WindowShouldClose())
         {
             var delta = Raylib.GetFrameTime();
             Update(delta);
             Raylib.BeginDrawing();
+            SpriteManager.RenderAll();
             Render();
             Raylib.EndDrawing();
         }
 
         CleanUp();
+        SpriteManager.DestroyAll();
         AudioManager.CleanUp();
         Raylib.CloseWindow();
     }
