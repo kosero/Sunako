@@ -4,6 +4,13 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+
+        <PackageId>Sunako</PackageId>
+        <Version>0.1.3</Version>
+        <Authors>kosero</Authors>
+        <Description>Just a collection of C# helper classes I wrote to make my raylib projects less repetitive</Description>
+        <RepositoryUrl>https://github.com/kosero/Sunako</RepositoryUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
     </PropertyGroup>
 
     <ItemGroup>
