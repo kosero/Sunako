@@ -1,5 +1,6 @@
 using Raylib_cs;
 using Sunako.Audio;
+using Sunako.Input;
 
 namespace Sunako.Core;
 
