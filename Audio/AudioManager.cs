@@ -64,6 +64,16 @@ public static class AudioManager
             Raylib.CloseAudioDevice();
     }
 
+    public static void PlaySfx(string key, float pitch = 1f, float volume = -1f)
+    {
+        if (!Sfx.TryGetValue(key, out var sound)) return;
+        
+        var vol = volume < 0 ? SfxVolume : Math.Clamp(volume, 0f, 1f);
+        Raylib.SetSoundVolume(sound, vol);
+        Raylib.SetSoundPitch(sound, pitch);
+        Raylib.PlaySound(sound);
+    }
+
     public static void SetBgmVolume(float volume)
     {
         BgmVolume = Math.Clamp(volume, 0f, 1f);

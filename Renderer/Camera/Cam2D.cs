@@ -43,7 +43,7 @@ public class Cam2D : ICamera
     public void Begin()
     {
         var originalTarget = _camera.Target;
-        _camera.Target += _shakeOffset;
+        _camera.Target = new Vector2(MathF.Round(_camera.Target.X + _shakeOffset.X), MathF.Round(_camera.Target.Y + _shakeOffset.Y));
         Raylib.BeginMode2D(_camera);
         _camera.Target = originalTarget;
     }

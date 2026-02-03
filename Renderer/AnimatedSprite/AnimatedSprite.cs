@@ -60,6 +60,21 @@ public class AnimatedSprite : Sprite.Sprite
             rect.Width * (FlipH ? -1 : 1),
             rect.Height * (FlipV ? -1 : 1)
         );
+
+        var destWidth = MathF.Abs(rect.Width) * Scale;
+        var destHeight = MathF.Abs(rect.Height) * Scale;
+
+        DestRect = new Rectangle(
+            MathF.Round(Position.X + Offset.X),
+            MathF.Round(Position.Y + Offset.Y),
+            destWidth,
+            destHeight
+        );
+
+        OriginPoint = new System.Numerics.Vector2(
+            destWidth * Origin.X,
+            destHeight * Origin.Y
+        );
     }
 
     public void ForceFrame(int index)

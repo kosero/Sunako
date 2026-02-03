@@ -169,8 +169,8 @@ public class Sprite
         var destHeight = srcHeight * _scale;
 
         DestRect = new Rectangle(
-            _position.X + _offset.X,
-            _position.Y + _offset.Y,
+            MathF.Round(_position.X + _offset.X),
+            MathF.Round(_position.Y + _offset.Y),
             MathF.Abs(destWidth),
             MathF.Abs(destHeight)
         );

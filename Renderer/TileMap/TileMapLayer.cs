@@ -56,8 +56,8 @@ public class TilemapLayer
             if (tileId < 0) continue;
             var src = _tileset.GetSourceRect(tileId);
 
-            var destX = position.X + x * _tileset.TileWidth * scale;
-            var destY = position.Y + y * _tileset.TileHeight * scale;
+            var destX = MathF.Round(position.X + x * _tileset.TileWidth * scale);
+            var destY = MathF.Round(position.Y + y * _tileset.TileHeight * scale);
             var destW = _tileset.TileWidth * scale;
             var destH = _tileset.TileHeight * scale;
 

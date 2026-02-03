@@ -12,22 +12,15 @@ public class Window()
     private static bool _windowIsResizable;
     private static bool _msaa;
 
+    private string _title;
+    private int _width;
+    private int _height;
+
     protected Window(string title, int width, int height) : this()
     {
-        ConfigFlags flags = 0;
-        if (_vsync)
-            flags |= ConfigFlags.VSyncHint;
-        if (_msaa)
-            flags |= ConfigFlags.Msaa4xHint;
-        if (_windowIsResizable)
-            flags |= ConfigFlags.ResizableWindow;
-        if (_fullscreen)
-            flags |= ConfigFlags.FullscreenMode;
-
-        Raylib.SetConfigFlags(flags);
-        Raylib.InitWindow(width, height, title);
-        AudioManager.Init();
-        Raylib.SetExitKey(KeyboardKey.Null);
+        _title = title;
+        _width = width;
+        _height = height;
         _isRunning = true;
     }
 
@@ -84,14 +77,25 @@ public class Window()
 
     public void Run()
     {
+        ConfigFlags flags = 0;
+        if (_vsync) flags |= ConfigFlags.VSyncHint;
+        if (_msaa) flags |= ConfigFlags.Msaa4xHint;
+        if (_windowIsResizable) flags |= ConfigFlags.ResizableWindow;
+        if (_fullscreen) flags |= ConfigFlags.FullscreenMode;
+
+        Raylib.SetConfigFlags(flags);
+        Raylib.InitWindow(_width, _height, _title);
+        AudioManager.Init();
+        Raylib.SetExitKey(KeyboardKey.Null);
+
         SpriteManager.InitPool();
         LoadContent();
+        
         while (_isRunning && !Raylib.WindowShouldClose())
         {
             var delta = Raylib.GetFrameTime();
             Update(delta);
             Raylib.BeginDrawing();
-            SpriteManager.RenderAll();
             Render();
             Raylib.EndDrawing();
         }
